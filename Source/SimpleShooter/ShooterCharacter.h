@@ -22,6 +22,9 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+	UFUNCTION(BlueprintPure)
+	bool IsDead() const;
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -39,13 +42,16 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	float Health;
+	
+	UPROPERTY(VisibleAnywhere)
+	bool Dead = false;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
 
 	UPROPERTY()
 	AGun* Gun;
-
+	
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
 	void LookUpRate(float AxisValue);

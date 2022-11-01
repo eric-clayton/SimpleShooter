@@ -25,7 +25,10 @@ void AShooterCharacter::BeginPlay()
 	Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	Gun->SetOwner(this);
 }
-
+bool AShooterCharacter::IsDead() const
+{
+	return Dead;
+}
 // Called every frame
 void AShooterCharacter::Tick(float DeltaTime)
 {
@@ -54,7 +57,11 @@ float AShooterCharacter::TakeDamage(float DamageAmount, FDamageEvent const& Dama
 	float DamageToApply = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	DamageToApply = FMath::Min(Health, DamageToApply);
 	Health -= DamageToApply;
-	UE_LOG(LogTemp, Warning, TEXT("Health: %f"), Health);
+	if (Health == 0)
+	{
+		Dead = true;
+	}
+
 	return DamageToApply;
 }
 
