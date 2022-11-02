@@ -30,6 +30,10 @@ bool AShooterCharacter::IsDead() const
 {
 	return Health <= 0;
 }
+float AShooterCharacter::GetHealthPercent() const
+{
+	return Health / MaxHealth;
+}
 // Called every frame
 void AShooterCharacter::Tick(float DeltaTime)
 {
@@ -68,8 +72,6 @@ float AShooterCharacter::TakeDamage(float DamageAmount, FDamageEvent const& Dama
 		}
 		DetachFromControllerPendingDestroy();
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		
-	
 	}
 	return DamageToApply;
 }
