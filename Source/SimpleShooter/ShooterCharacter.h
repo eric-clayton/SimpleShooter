@@ -44,9 +44,6 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	float Health;
-	
-	UPROPERTY(VisibleAnywhere)
-	bool Dead = false;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AGun> GunClass;
